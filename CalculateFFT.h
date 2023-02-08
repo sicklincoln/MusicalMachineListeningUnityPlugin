@@ -8,7 +8,7 @@
 
 #pragma once
 
-#include "KissFFTr/kiss_fftr.h"
+#include "kiss_fftr.h"
 
 //hop and shunt see FeatureFrame
 
@@ -28,7 +28,7 @@ float * window;
     
     kiss_fftr_cfg cfg;
     
-    int fftsize;
+    //int fftsize;
     //singleton audio feature extractor instantiated with library load? static object?
     int halffftsize;
     
@@ -57,7 +57,7 @@ int dowindowing;
 void calculateFrame(float * input, float * output);
 
 //CalculateFFT::CalculateFFT(int fftsize, int hopsize) : fftsize(fftsize), hopsize(hopsize) {
-CalculateFFT::CalculateFFT(int inputsize=1470, int fftsize=2048, int windowflag=0) : inputsize(inputsize), fftsize(fftsize), dowindowing(windowflag) {
+CalculateFFT(int inputsize=1470, int fftsize=2048, int windowflag=0) : inputsize(inputsize), fftsize(fftsize), dowindowing(windowflag) {
 	
 	nover2= fftsize >>1;
 	
@@ -87,7 +87,7 @@ CalculateFFT::CalculateFFT(int inputsize=1470, int fftsize=2048, int windowflag=
         //kiss_fft_scalar rin[nfft+2];
         //kiss_fft_cpx cout[nfft];
         
-        fftsize = fftsizenow;
+        //fftsize = fftsizenow;
         halffftsize = fftsize/2;
         
         cfg = kiss_fftr_alloc(fftsize,0,0,0);
@@ -125,7 +125,7 @@ CalculateFFT::CalculateFFT(int inputsize=1470, int fftsize=2048, int windowflag=
 }
 
 
-CalculateFFT::~CalculateFFT() {
+~CalculateFFT() {
 	
     
     free(cfg);
